@@ -21947,8 +21947,8 @@ window.addEventListener('load', async function () {
   }
 
   ;
-  var scripts = document.getElementsByTagName('script');
-  var tikzScripts = Array.prototype.slice.call(scripts).filter(e => e.getAttribute('type') === 'text/tikz');
+  var scripts = document.getElementsByTagName('pre');
+  var tikzScripts = Array.prototype.slice.call(scripts).filter(e => e.dataset.tikz === 'true');
   tikzScripts.reduce(async (promise, element) => {
     await promise;
     return process(element);
