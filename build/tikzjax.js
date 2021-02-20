@@ -21854,16 +21854,15 @@ if (document.currentScript === undefined) {
 
 var url = new URL(document.currentScript.src); // host includes the port
 
-var host = url.host;
-var urlRoot = url.protocol + '//' + host;
+var filePath = url.match(/^.*\//)[0];
 let pages = 1000;
 var coredump;
 var code;
 
 async function load() {
-  let tex = await fetch(urlRoot + '/ef253ef29e2f057334f77ead7f06ed8f22607d38.wasm');
+  let tex = await fetch(filePath + '/ef253ef29e2f057334f77ead7f06ed8f22607d38.wasm');
   code = await tex.arrayBuffer();
-  let response = await fetch_readablestream__WEBPACK_IMPORTED_MODULE_5___default()(urlRoot + '/7620f557a41f2bf40820e76ba1fd4d89a484859d.gz');
+  let response = await fetch_readablestream__WEBPACK_IMPORTED_MODULE_5___default()(filePath + '/7620f557a41f2bf40820e76ba1fd4d89a484859d.gz');
   const reader = response.body.getReader();
   const inf = new pako__WEBPACK_IMPORTED_MODULE_3___default.a.Inflate();
 
@@ -21914,7 +21913,7 @@ async function tex(input) {
   return _library__WEBPACK_IMPORTED_MODULE_2__["readFileSync"]("sample.dvi");
 }
 
-window.onload = async function () {
+window.addEventListener('load', async function () {
   await load();
 
   async function process(elt) {
@@ -21956,7 +21955,7 @@ window.onload = async function () {
     await promise;
     return process(element);
   }, Promise.resolve());
-};
+});
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
 
 /***/ }),
