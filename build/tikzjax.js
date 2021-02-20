@@ -21852,9 +21852,7 @@ if (document.currentScript === undefined) {
 // tikzwolke server that can handle our POSTing tikz code
 
 
-var url = new URL(document.currentScript.src); // host includes the port
-
-var filePath = url.match(/^.*\//)[0];
+var filePath = document.currentScript.src.match(/^.*\//)[0];
 let pages = 1000;
 var coredump;
 var code;
